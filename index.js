@@ -1,3 +1,8 @@
-const name = process.argv[2];
+//const name = process.argv[2];
 
-console.log(`Hi ${name}!`);
+for(var i = 0; i < process.argv.length; i++)
+{
+	console.log(`Hi ${process.argv[i]}!`);
+}
+
+//console.log(`Hi ${name}!`);
