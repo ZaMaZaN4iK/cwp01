@@ -1,8 +1,10 @@
-//const name = process.argv[2];
+const {exec} = require('child_process');
 
-for(var i = 0; i < process.argv.length; i++)
-{
-	console.log(`Hi ${process.argv[i]}!`);
-}
+const path = process.argv[2];
 
-//console.log(`Hi ${name}!`);
+exec('touch summary.js');
+exec("echo 'const {exec} = require('child_process');\n' >> summary.js");
+exec("echo 'exec('find .')' >> summary.js");
+
+exec("mkdir temp");
+
