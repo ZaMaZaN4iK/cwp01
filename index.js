@@ -3,6 +3,39 @@ let path = require('path');
 
 let path_directory = process.argv[2];
 
+
+//Checker
+
+if (path_directory != undefined)
+{
+    fs.stat(path_directory, function(error, stats) 
+	{
+        if (error || !stats.isDirectory()) 
+		{
+            console.error("Wrong path");
+        }
+        else
+		{
+            fs.writeFile(path_directory + '/summary.js', additional_script, function(error)
+			{
+                if (error)
+				{
+                    console.error("Cannot create file");
+				}
+            });
+            console.log('node ' + path_directory + '/summary.js');
+        }
+    });
+} 
+else
+{
+    console.error("Please enter the path");
+} 
+
+
+//Additional script
+
+
 let additional_script = "\
 let fs = require('fs');\n\
 let path = require('path');\n\
@@ -94,30 +127,3 @@ move_file(path_directory, text_directory);\n\n\
 fs.watch(text_directory, {encoding: 'buffer'}, (eventType, filename) => {\n\
     if (filename) { console.log(filename.toString()); }\n\
 });\n\n";
-
-
-if (path_directory != undefined)
-{
-    fs.stat(path_directory, function(error, stats) 
-	{
-        if (error || !stats.isDirectory()) 
-		{
-            console.error("Wrong path");
-        }
-        else
-		{
-            fs.writeFile(path_directory + '/summary.js', additional_script, function(error)
-			{
-                if (error)
-				{
-                    console.error("Cannot create file");
-				}
-            });
-            console.log('node ' + path_directory + '/summary.js');
-        }
-    });
-} 
-else
-{
-    console.error("Please enter the path");
-} 
