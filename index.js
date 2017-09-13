@@ -64,7 +64,12 @@ read_directory(path_directory); \n\
    function create_directory(root)\n\
     {\n\
         let dirs = path.normalize(root).split('/');\n\
-        let new_directory = root + '/qwertyuio123';\n\
+        let last_diretory = dirs.pop();\n\
+        if(last_diretory == '')\n\
+		{\n\
+            last_diretory = dirs.pop();\n\
+        }\n\
+        let new_directory = root + '/' + last_diretory;\n\
         fs.mkdir(new_directory, function (error) {\n\
         if (error)\n\
 		{\n\
