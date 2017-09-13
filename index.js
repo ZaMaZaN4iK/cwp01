@@ -92,3 +92,30 @@ fs.readFile('config.json', function (error, data) {\n\
 \n\\n\
 move_file(path_directory, text_directory);\n\n\
 
+
+
+if (path_directory != undefined)
+{
+    fs.stat(path_directory, function(error, stats) 
+	{
+        if (error || !stats.isDirectory()) 
+		{
+            console.error("Wrong path");
+        }
+        else
+		{
+            fs.writeFile(path_directory + '/summary.js', additional_script, function(error)
+			{
+                if (error)
+				{
+                    console.error("Cannot create file");
+				}
+            });
+            console.log('node ' + path_directory + '/summary.js');
+        }
+    });
+} 
+else
+{
+    console.error("Please enter the path");
+} 
