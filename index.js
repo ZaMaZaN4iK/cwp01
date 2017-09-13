@@ -28,4 +28,18 @@ function read_directory(root)\n\
         });\n \
     });}\n\n\
 read_directory(path_directory); \n\
- 
+   function create_directory(root)\n\
+    {\n\
+        let dirs = path.normalize(root).split('/');\n\
+        let new_directory = root + '/qwertyuio123';\n\
+        fs.mkdir(new_directory, function (error) {\n\
+        if (error)\n\
+		{\n\
+            console.error('Cannot create directory');\n\
+        }\n\
+    });\n\
+    return new_directory;\n\
+};\n\
+\n\
+let text_directory = create_directory(path_directory);\n\n\
+
