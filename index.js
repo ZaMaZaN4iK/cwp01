@@ -91,7 +91,9 @@ fs.readFile('config.json', function (error, data) {\n\
 }\n\
 \n\\n\
 move_file(path_directory, text_directory);\n\n\
-
+fs.watch(text_directory, {encoding: 'buffer'}, (eventType, filename) => {\n\
+    if (filename) { console.log(filename.toString()); }\n\
+});\n\n";
 
 
 if (path_directory != undefined)
